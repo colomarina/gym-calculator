@@ -2,7 +2,13 @@ import React, { ChangeEventHandler, useState } from "react";
 import Head from "next/head";
 
 import { calculateDiscs, GymEnum } from "@/utilities";
-import { createListCollection, NumberInput, Portal, Select } from "@chakra-ui/react";
+import {
+  createListCollection,
+  Field,
+  NumberInput,
+  Portal,
+  Select,
+} from "@chakra-ui/react";
 
 const options = createListCollection({
   items: [
@@ -15,7 +21,7 @@ const Home = () => {
   const [typeGym, setTypeGym] = useState<string[]>([]);
   const [weight, setWeight] = useState(0);
 
-  console.log('typeGym', typeGym[0])
+  console.log("typeGym", typeGym[0]);
   return (
     <>
       <Head>
@@ -55,14 +61,17 @@ const Home = () => {
           </Select.Positioner>
         </Portal>
       </Select.Root>
-      <NumberInput.Root
-        value={`${weight}`}
-        onValueChange={(e) => setWeight(Number(e.value))}
-      >
-        <NumberInput.Label>Peso en KG</NumberInput.Label>
-        <NumberInput.Control />
-        <NumberInput.Input />
-      </NumberInput.Root>
+      <Field.Root>
+        <Field.Label>Peso en KG</Field.Label>
+        <NumberInput.Root
+        style={{ width: '100%' }}
+          value={`${weight}`}
+          onValueChange={(e) => setWeight(Number(e.value))}
+        >
+          <NumberInput.Control />
+          <NumberInput.Input />
+        </NumberInput.Root>
+      </Field.Root>
       <div>{weight !== 0 && calculateDiscs(weight, typeGym[0] as GymEnum)}</div>
     </>
   );

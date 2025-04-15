@@ -10,7 +10,7 @@ const createMessage = (objeto: Record<string, number>) => {
         `${cantidad} disco${cantidad > 1 ? "s" : ""} de ${peso}`
     )
     .join(" y ");
-
+  // Pasar mejor a un compo, con divs y listas, asi queda mas bonito 
   return `Deberías usar la barra de 20kg y ponerle por lado ${discos}.`;
 };
 
